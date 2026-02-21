@@ -2599,3 +2599,10 @@
 "SettingsDataClearMediaCache" = "Clear Media Cache";
 "SettingsDataClearMediaCacheDescription" = "Deletes locally cached media for this account";
 "SettingsDataClearMediaDone" = "Media cache cleared";
+"UseCustomStt" = "Use Custom Voice Transcription";
+"UseCustomSttDescription" = "Use your own STT server instead of Telegram Premium transcription";
+"SttServerUrl" = "STT Server URL";
+"TranscriptionSource" = "Transcription Source";
+"CustomStt" = "Custom STT";
+"InvalidUrl" = "Invalid URL format";
+"CustomSttTranscriptionFailed" = "Custom transcription failed. Please check your server.";

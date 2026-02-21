@@ -123,6 +123,8 @@ export type LangCode = (
 
 export type TimeFormat = '24h' | '12h';
 
+export type TranscriptionSource = 'telegram' | 'custom';
+
 export interface AccountSettings {
   hasWebNotifications: boolean;
   hasPushNotifications: boolean;
@@ -158,6 +160,9 @@ export interface AccountSettings {
   translationLanguage?: string;
   doNotTranslate: string[];
   shouldPaidMessageAutoApprove: boolean;
+  shouldUseCustomStt: boolean;
+  customSttServerUrl: string;
+  transcriptionSource: TranscriptionSource;
 }
 
 export type IAnchorPosition = {
@@ -265,6 +270,7 @@ export enum SettingsScreens {
   DoNotTranslate,
   FoldersShare,
   Passkeys,
+  VoiceTranscription,
 }
 
 export type StickerSetOrReactionsSetOrRecent = Pick<ApiStickerSet, (

@@ -7,6 +7,7 @@ import {
 } from '../global/index';
 import { INITIAL_GLOBAL_STATE } from '../global/initialState';
 import { updatePasscodeSettings } from '../global/reducers';
+import { loadCustomTranscriptions } from './customTranscriptions';
 import { cloneDeep } from './iteratees';
 import { clearStoredSession } from './sessions';
 
@@ -39,6 +40,18 @@ export async function initGlobal(force: boolean = false, prevGlobal?: GlobalStat
     if (storedSharedState) {
       global.sharedState = storedSharedState;
     }
+  }
+
+  // Load custom transcriptions before setting global
+  const customTranscriptions = await loadCustomTranscriptions();
+  if (Object.keys(customTranscriptions).length > 0) {
+    Object.values(customTranscriptions).forEach((t) => {
+      const transcriptionId = `custom-stt-${t.chatId}-${t.messageId}`;
+      global.transcriptions[transcriptionId] = {
+        text: t.text,
+        transcriptionId,
+      };
+    });
   }
 
   setGlobal(global);

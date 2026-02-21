@@ -1909,6 +1909,13 @@ export interface LangPair {
   'SettingsDataClearMediaCache': undefined;
   'SettingsDataClearMediaCacheDescription': undefined;
   'SettingsDataClearMediaDone': undefined;
+  'UseCustomStt': undefined;
+  'UseCustomSttDescription': undefined;
+  'SttServerUrl': undefined;
+  'TranscriptionSource': undefined;
+  'CustomStt': undefined;
+  'InvalidUrl': undefined;
+  'CustomSttTranscriptionFailed': undefined;
 }
 
 export interface LangPairWithVariables<V = LangVariable> {

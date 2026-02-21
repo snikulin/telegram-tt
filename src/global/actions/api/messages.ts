@@ -1,3 +1,5 @@
+import './stt';
+
 import type {
   ApiAttachment,
   ApiChat,
@@ -1593,6 +1595,13 @@ addActionHandler('transcribeAudio', async (global, actions, payload): Promise<vo
   const chat = selectChat(global, chatId);
 
   if (!chat) return;
+
+  const { transcriptionSource, shouldUseCustomStt } = global.settings.byKey;
+
+  if (transcriptionSource === 'custom' && shouldUseCustomStt) {
+    actions.transcribeAudioWithCustomStt({ chatId, messageId });
+    return;
+  }
 
   global = updateChatMessage(global, chatId, messageId, {
     transcriptionId: '',

@@ -2597,6 +2597,11 @@ export interface ActionPayloads {
     messageId: number;
   };
 
+  transcribeAudioWithCustomStt: {
+    chatId: string;
+    messageId: number;
+  };
+
   loadPremiumGifts: undefined;
   loadTonGifts: undefined;
   loadStarGifts: undefined;

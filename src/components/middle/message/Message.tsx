@@ -2120,7 +2120,11 @@ export default memo(withGlobal<OwnProps>(
 
     const chatLevel = chat?.boostLevel || 0;
     const transcribeMinLevel = global.appConfig.groupTranscribeLevelMin;
-    const canTranscribeVoice = isPremium || Boolean(transcribeMinLevel && chatLevel >= transcribeMinLevel);
+    const { shouldUseCustomStt, transcriptionSource } = global.settings.byKey;
+    const canUseCustomStt = shouldUseCustomStt && transcriptionSource === 'custom';
+    const canTranscribeVoice = canUseCustomStt
+      || isPremium
+      || Boolean(transcribeMinLevel && chatLevel >= transcribeMinLevel);
 
     const viaBusinessBot = viaBusinessBotId ? selectUser(global, viaBusinessBotId) : undefined;
 
@@ -2195,7 +2199,11 @@ export default memo(withGlobal<OwnProps>(
       activeEmojiInteractions,
       hasUnreadReaction,
       isTranscribing: transcriptionId !== undefined && global.transcriptions[transcriptionId]?.isPending,
-      transcribedText: transcriptionId !== undefined ? global.transcriptions[transcriptionId]?.text : undefined,
+      transcribedText: transcriptionId !== undefined
+        ? global.transcriptions[transcriptionId]?.text
+        : (global.settings.byKey.shouldUseCustomStt
+          ? global.transcriptions[`custom-stt-${chatId}-${id}`]?.text
+          : undefined),
       isPremium,
       senderAdminMember,
       messageTopic,

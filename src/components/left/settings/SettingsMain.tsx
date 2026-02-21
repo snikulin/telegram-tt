@@ -171,6 +171,14 @@ const SettingsMain: FC<OwnProps & StateProps> = ({
         >
           {lang('MenuStickers')}
         </ListItem>
+        <ListItem
+          icon="transcribe"
+          narrow
+
+          onClick={() => openSettingsScreen({ screen: SettingsScreens.VoiceTranscription })}
+        >
+          {lang('UseCustomStt')}
+        </ListItem>
       </div>
       <div className="settings-main-menu">
         {canBuyPremium && (

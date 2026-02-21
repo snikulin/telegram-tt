@@ -58,7 +58,9 @@ export function getMessageTranscription(message: ApiMessage) {
   const { transcriptionId } = message;
   const global = getGlobal();
 
-  return transcriptionId && global.transcriptions[transcriptionId]?.text;
+  if (!transcriptionId) return undefined;
+
+  return global.transcriptions[transcriptionId]?.text;
 }
 
 export function hasMessageText(message: MediaContainer) {
